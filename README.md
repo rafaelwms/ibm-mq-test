@@ -16,5 +16,6 @@ We assuming your LINUX or WSL are ready to run Docker Containers
 ## Console Using
 To access the IBM MQ  Console use the following URL
  - https://localhost:9443/ibmmq/console/
+ - Use amdin user and password values on the runnig container YML file
 
    NOTE: **localhost** can be replaced by your running Container IP Device
