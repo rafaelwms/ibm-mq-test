@@ -10,9 +10,11 @@ We assuming your LINUX or WSL are ready to run Docker Containers
  - Copy the file to a Linux folder on your preference
  - Go to the respective Linux Folder
  - Type the command **docker compose -f ibm-mq.yml up** (if you preffer to run on background on your terminal, use **docker compose -f ibm-mq.yml up -d**)
-NOTE: You can change the YML file by your own, changing the App or Admin Password
+ 
+   NOTE: You can change the YML file by your own, changing the App or Admin Password
 
 ## Console Using
 To access the IBM MQ  Console use the following URL
  - https://localhost:9443/ibmmq/console/
-NOTE: **localhost** can be changed by your Container IP Device
+
+   NOTE: **localhost** can be replaced by your running Container IP Device
