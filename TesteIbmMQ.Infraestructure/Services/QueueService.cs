@@ -15,6 +15,11 @@ namespace TesteIbmMQ.Infraestructure.Services
         {
             if (mqQMgr != null)
             {
+                if (mqQueue == null)
+                {
+                    logger.LogInformation($"mqQueue está nulo, vamos obter para a fila {queue}");
+                    mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_INPUT_SHARED | MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_BROWSE);
+                }
                 return;
             }
             Hashtable props = new()
@@ -34,12 +39,6 @@ namespace TesteIbmMQ.Infraestructure.Services
         public async Task StartQueueProcessor(Func<string, string, CancellationToken, Task> callBack, string queue, CancellationToken stoppingToken)
         {
             InitQueue(queue);
-            if (mqQueue == null)
-            {
-                logger.LogInformation($"mqQueue está nulo, vamos obter para a fila {queue}");
-                mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_INPUT_SHARED | MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_BROWSE);
-            }
-
             bool _continue = true;
             while (_continue && !stoppingToken.IsCancellationRequested)
             {
@@ -68,13 +67,20 @@ namespace TesteIbmMQ.Infraestructure.Services
                         logger.LogError(mqe, $"01-Erro ao tentar consumir item de fila! - Código de Erro IBMMQ: {mqe?.Reason}");
                     }
                 }
+                catch (Exception ex)
+                {
+
+                        _continue = false;
+                        logger.LogError(ex, $"01-Erro ao tentar consumir item de fila! - Erro Genérico: {ex?.Message}");
+
+                }
             }
         }
 
         public async Task SendMessageToQueue(string queue, string message)
         {
 
-            InitQueue(queue);
+            InitQueueForPut(queue);
             try
             {
 
@@ -95,6 +101,31 @@ namespace TesteIbmMQ.Infraestructure.Services
                 Console.Write(e.Reason);
                 Console.Write(e.StackTrace);
             }
+        }
+
+        private void InitQueueForPut(string queue)
+        {
+            if (mqQMgr != null)
+            {
+                if (mqQueue == null)
+                {
+                    logger.LogInformation($"mqQueue está nulo, vamos obter para a fila {queue}");
+                    mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
+                }
+                return;
+            }
+            Hashtable props = new()
+    {
+        { MQC.HOST_NAME_PROPERTY, settings.Host },
+        { MQC.CHANNEL_PROPERTY, settings.Channel },
+        { MQC.PORT_PROPERTY, settings.Port },
+        { MQC.TRANSPORT_PROPERTY, MQC.TRANSPORT_MQSERIES_MANAGED },
+        { MQC.USER_ID_PROPERTY, settings.Username },
+        { MQC.PASSWORD_PROPERTY, settings.Password }
+    };
+            logger.LogInformation("Connecting to " + settings.QueueManagerName);
+            mqQMgr = new MQQueueManager(settings.QueueManagerName, props);
+            mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace TesteIbmMQ.Worker
             using var scope = scopeFactory.CreateScope();
             var mediatr = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-            var notification = new FilaTesteNotification(message);
+            var notification = new FilaTesteNotification(message.Replace("\n", string.Empty));
 
             await mediatr.Publish(notification, cancellationToken);
         }

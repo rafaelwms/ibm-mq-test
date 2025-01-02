@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.Worker", "TesteIbmMQ\TesteIbmMQ.Worker.csproj", "{F06552AE-8989-4873-9BDF-27288C47450E}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.CrossCutting", "TesteIbmMQ.CrossCutting\TesteIbmMQ.CrossCutting.csproj", "{348F13F1-EE47-4844-90BC-BEE739B54F04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.Application", "TesteIbmMQ.Application\TesteIbmMQ.Application.csproj", "{D6AD54A0-85AB-49B9-ACCD-B2CB036CBDF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMq.ConsoleApp", "TesteIbmMq.ConsoleApp\TesteIbmMq.ConsoleApp.csproj", "{9B543AB7-FB41-4743-9AF2-29A7FDE18EC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.Api", "TesteIbmMQ.Api\TesteIbmMQ.Api.csproj", "{3F5F6C71-0F0F-47FF-9EB1-1AB17AFBACF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{D6AD54A0-85AB-49B9-ACCD-B2CB036CBDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6AD54A0-85AB-49B9-ACCD-B2CB036CBDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6AD54A0-85AB-49B9-ACCD-B2CB036CBDF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B543AB7-FB41-4743-9AF2-29A7FDE18EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B543AB7-FB41-4743-9AF2-29A7FDE18EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B543AB7-FB41-4743-9AF2-29A7FDE18EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B543AB7-FB41-4743-9AF2-29A7FDE18EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F5F6C71-0F0F-47FF-9EB1-1AB17AFBACF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F5F6C71-0F0F-47FF-9EB1-1AB17AFBACF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F5F6C71-0F0F-47FF-9EB1-1AB17AFBACF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F5F6C71-0F0F-47FF-9EB1-1AB17AFBACF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
