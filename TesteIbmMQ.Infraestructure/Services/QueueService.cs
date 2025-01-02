@@ -67,6 +67,13 @@ namespace TesteIbmMQ.Infraestructure.Services
                         logger.LogError(mqe, $"01-Erro ao tentar consumir item de fila! - Código de Erro IBMMQ: {mqe?.Reason}");
                     }
                 }
+                catch (Exception ex)
+                {
+
+                        _continue = false;
+                        logger.LogError(ex, $"01-Erro ao tentar consumir item de fila! - Erro Genérico: {ex?.Message}");
+
+                }
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using TesteIbmMQ.Application.Notifications;
 using TesteIbmMQ.Domain.Repositories;
 using TesteIbmMQ.Domain.Services;
@@ -8,11 +9,11 @@ using TesteIbmMQ.Domain.Utils;
 
 namespace TesteIbmMQ.Application.Commands.FilaTeste
 {
-    public class FilaTesteHandler(ILogger logger, IQueueService queueService, RetrySettings retrySettings, IFilaTesteRepository repository) : INotificationHandler<FilaTesteNotification>
+    public class FilaTesteHandler(ILogger<FilaTesteHandler> logger, IQueueService queueService, RetrySettings retrySettings, IFilaTesteRepository repository) : INotificationHandler<FilaTesteNotification>
     {
         public async Task Handle(FilaTesteNotification notification, CancellationToken cancellationToken)
         {
-            logger.LogInformation($"Processando mensagem da fila: {notification.Message}");
+            logger.LogInformation($"Processando mensagem da fila: {JsonConvert.SerializeObject(notification.Message, Formatting.Indented)}");
         }
         private void SetRetryProperties(FilaTesteNotification notification)
         {
