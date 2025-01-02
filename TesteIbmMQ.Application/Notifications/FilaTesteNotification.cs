@@ -22,9 +22,9 @@ namespace TesteIbmMQ.Application.Notifications
 
             try
             {
-                Retries = jsonString.GetPropertyValuee<int?>("Retries");
-                NextRetry = jsonString.GetPropertyValuee<DateTime?>("NextRetry");
-                Message = jsonString.GetPropertyValuee<EstruturaFila>("Message");
+                Retries = jsonString.GetPropertyValue<int?>("Retries");
+                NextRetry = jsonString.GetPropertyValue<DateTime?>("NextRetry");
+                Message = jsonString.GetPropertyValue<EstruturaFila>("Message");
 
             }
             catch (JsonException ex)
