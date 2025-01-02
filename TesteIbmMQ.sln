@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.CrossCutting", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.Application", "TesteIbmMQ.Application\TesteIbmMQ.Application.csproj", "{D6AD54A0-85AB-49B9-ACCD-B2CB036CBDF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{C206100D-A729-4E38-9CE0-004694B8D945}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMq.ConsoleApp", "TesteIbmMq.ConsoleApp\TesteIbmMq.ConsoleApp.csproj", "{9B543AB7-FB41-4743-9AF2-29A7FDE18EC9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.Api", "TesteIbmMQ.Api\TesteIbmMQ.Api.csproj", "{3F5F6C71-0F0F-47FF-9EB1-1AB17AFBACF9}"
@@ -45,10 +43,6 @@ Global
 		{D6AD54A0-85AB-49B9-ACCD-B2CB036CBDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6AD54A0-85AB-49B9-ACCD-B2CB036CBDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6AD54A0-85AB-49B9-ACCD-B2CB036CBDF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C206100D-A729-4E38-9CE0-004694B8D945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C206100D-A729-4E38-9CE0-004694B8D945}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C206100D-A729-4E38-9CE0-004694B8D945}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C206100D-A729-4E38-9CE0-004694B8D945}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B543AB7-FB41-4743-9AF2-29A7FDE18EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B543AB7-FB41-4743-9AF2-29A7FDE18EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B543AB7-FB41-4743-9AF2-29A7FDE18EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
