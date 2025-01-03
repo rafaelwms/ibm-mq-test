@@ -24,9 +24,10 @@ namespace TesteIbmMQ.Worker
                  {
                      services.AddLogging();
                      services.AddHealthChecks();
-                     services.AddFilaTesteMediator();
+                     services.AddCustomSettings(configuration);
+                     services.AddCustomServices(configuration);
                      services.AddRepository(configuration);
-                     services.AddFilaTesteSettings(configuration);
+                     services.AddFilaTesteMediator();
                      services.AddHttpContextAccessor();
                      services.AddHostedService<ConsumerService>();
                  });
