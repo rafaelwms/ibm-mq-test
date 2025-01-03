@@ -1,4 +1,6 @@
 ﻿using IBM.WMQ;
+using IBM.WMQ.Nmqi;
+using IBM.WMQ.PCF;
 using Microsoft.Extensions.Logging;
 using System.Collections;
 using TesteIbmMQ.Domain.Services;
@@ -85,8 +87,11 @@ namespace TesteIbmMQ.Infraestructure.Services
             {
 
                 MQMessage mqMsg = new();
+
                 mqMsg.WriteString(message);
                 mqMsg.Format = MQC.MQFMT_STRING;
+
+
                 MQPutMessageOptions mqPutMsgOpts = new();
                 mqQueue.Put(mqMsg, mqPutMsgOpts);
                 Console.WriteLine(message + " enviada");

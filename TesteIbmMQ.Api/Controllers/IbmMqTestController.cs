@@ -8,11 +8,13 @@ namespace TesteIbmMQ.Api.Controllers
     [Route("[controller]")]
     public class IbmMqTestController(ILogger<IbmMqTestController> logger, IQueueService queueService) : ControllerBase
     {
+
+
         /// <summary>
-        /// Endpoint to send a message to a queue
+        /// Envia uma mensagem para a fila
         /// </summary>
-        /// <param name="queue">Select between 1 to 3</param>
-        /// <param name="message">Your Message</param>
+        /// <param name="queue"></param>
+        /// <param name="message"></param>
         /// <returns></returns>
         [HttpPut("put-message/{queue}/{message}")]
         public async Task<IActionResult> Put(int queue, string message)
