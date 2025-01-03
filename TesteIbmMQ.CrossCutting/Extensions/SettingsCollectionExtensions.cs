@@ -8,10 +8,18 @@ namespace TesteIbmMQ.CrossCutting.Extensions
 {
     public static class SettingsCollectionExtensions
     {
-        public static IServiceCollection AddFilaTesteSettings(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddCustomSettings(this IServiceCollection services, IConfiguration configuration)
         {
-            configuration.GetConfig<RetrySettings>();
             services.AddLogging();
+
+            var queueSettings = new QueueSettings();
+            configuration.GetSection("QueueSettings").Bind(queueSettings);
+            services.AddSingleton(queueSettings);
+
+            var retrySettings = new RetrySettings();
+            configuration.GetSection("RetrySettings").Bind(retrySettings);
+            services.AddSingleton(retrySettings);
+
             return services;
         }
     }
