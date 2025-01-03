@@ -3,7 +3,7 @@ services:
     image: icr.io/ibm-messaging/mq:latest
     container_name: QM1
     environment:
-      LICENSE: accepts
+      LICENSE: accept
       MQ_QMGR_NAME: QM1
       MQ_APP_USER: app
       MQ_APP_PASSWORD: passw0rd
