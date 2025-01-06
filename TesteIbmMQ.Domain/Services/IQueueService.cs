@@ -5,5 +5,7 @@
         Task StartQueueProcessor(Func<string, string, CancellationToken, Task> callBack, string queue, CancellationToken stoppingToken);
 
         Task SendMessageToQueue(string queue, string message);
+
+        Task SendMessageToQueue(string queue, string message, int retryCount, DateTime readTime);
     }
 }

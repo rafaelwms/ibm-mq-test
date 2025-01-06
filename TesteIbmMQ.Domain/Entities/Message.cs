@@ -5,7 +5,7 @@ namespace TesteIbmMQ.Domain.Entities
 {
     public class Message
     {
-        public List<KeyValuePair<string, string>>? Header { get; set; }
+        public Dictionary<string, string>? Header { get; set; }
 
         public object? Body { get; set; }
 
@@ -20,7 +20,7 @@ namespace TesteIbmMQ.Domain.Entities
             {
                 return;
             }
-            Header = message.GetPropertyValue<List<KeyValuePair<string, string>>>("Header");
+            Header = message.GetPropertyValue<Dictionary<string, string>>("Header");
             Body = message.GetPropertyValue<object>("Body");
         }
 
@@ -35,18 +35,18 @@ namespace TesteIbmMQ.Domain.Entities
             {
                 return;
             }
-            Body = message;
+            Body = message is string ? JsonConvert.DeserializeObject<object>((string)message) : message;
         }
         public Message(object message, int retries, DateTime nextRetry)
         {
             if (message != null)
             {
-                Body = message;
+                Body = message is string ? JsonConvert.DeserializeObject<object>((string) message) : message ;
             }
-            Header = new List<KeyValuePair<string, string>>
+            Header = new Dictionary<string, string>
             {
-                new KeyValuePair<string, string>("RETRY_QUANTITY", retries.ToString()),
-                new KeyValuePair<string, string>("DATE_WAIT_READ", nextRetry.ToString("yyyy-MM-dd HH:mm:ss"))
+                {"RetryQtd", retries.ToString() },
+                {"NextRetry", nextRetry.ToString("yyyy-MM-dd HH:mm:ss") }
             };
 
         }
@@ -57,7 +57,7 @@ namespace TesteIbmMQ.Domain.Entities
             {
                 return false;
             }
-            var retryQuantity = Header.FirstOrDefault(x => x.Key == "RETRY_QUANTITY");
+            var retryQuantity = Header.FirstOrDefault(x => x.Key == "RetryQtd");
             if (retryQuantity.Value == null)
             {
                 return false;
@@ -71,13 +71,23 @@ namespace TesteIbmMQ.Domain.Entities
             {
                 return true;
             }
-            var dateWaitRead = Header.FirstOrDefault(x => x.Key == "DATE_WAIT_READ");
-            if (dateWaitRead.Value == null)
+            DateTime? dateWaitRead = DateTime.Parse(Header.FirstOrDefault(x => x.Key == "NextRetry").Value);
+            if (dateWaitRead == null)
             {
                 return true;
             }
-            return DateTime.Parse(dateWaitRead.Value) >= DateTime.Now;
+            return dateWaitRead.Value <= DateTime.Now;
 
+        }
+
+        public string GetTimeToRead()
+        {
+            if (Header == null)
+            {
+                return string.Empty;
+            }
+            var dateWaitRead = Header.FirstOrDefault(x => x.Key == "NextRetry");
+            return dateWaitRead.Value;
         }
     }
 }

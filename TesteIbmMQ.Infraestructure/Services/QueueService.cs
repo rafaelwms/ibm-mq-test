@@ -3,6 +3,7 @@ using IBM.WMQ.Nmqi;
 using IBM.WMQ.PCF;
 using Microsoft.Extensions.Logging;
 using System.Collections;
+using TesteIbmMQ.Domain.Entities;
 using TesteIbmMQ.Domain.Services;
 using TesteIbmMQ.Domain.Settings;
 
@@ -46,6 +47,14 @@ namespace TesteIbmMQ.Infraestructure.Services
             {
                 try
                 {
+
+                    if (IsQueueEmpty())
+                    {
+                        logger.LogInformation($"Queue {queue} is empty.");
+                        await Task.Delay(10000, stoppingToken); // Wait for some time before checking again
+                        continue;
+                    }
+
                     MQMessage mqMsg = new();
                     MQGetMessageOptions mqGetMsgOpts = new()
                     {
@@ -53,10 +62,19 @@ namespace TesteIbmMQ.Infraestructure.Services
                         WaitInterval = 10000
                     };
 
-                    mqQueue.Get(mqMsg, mqGetMsgOpts);
-                    string message = mqMsg.ReadString(mqMsg.MessageLength);
 
-                    await callBack(queue, message, stoppingToken);
+                    mqQueue.Get(mqMsg, mqGetMsgOpts);
+                    string stringMessage = mqMsg.ReadString(mqMsg.MessageLength);
+
+                    var message = new Message(stringMessage);
+
+                    if (!message.IsAllowedToRetry())
+                    {
+                        logger.LogInformation($"Message will be Readed at {message.GetTimeToRead()}");
+                        continue;
+                    }
+
+                    await callBack(queue, stringMessage, stoppingToken);
 
                     mqGetMsgOpts.Options = MQC.MQGMO_MSG_UNDER_CURSOR;
                     mqQueue.Get(mqMsg, mqGetMsgOpts);
@@ -72,8 +90,8 @@ namespace TesteIbmMQ.Infraestructure.Services
                 catch (Exception ex)
                 {
 
-                        _continue = false;
-                        logger.LogError(ex, $"01-Erro ao tentar consumir item de fila! - Erro Genérico: {ex?.Message}");
+                    _continue = false;
+                    logger.LogError(ex, $"01-Erro ao tentar consumir item de fila! - Erro Genérico: {ex?.Message}");
 
                 }
             }
@@ -88,7 +106,9 @@ namespace TesteIbmMQ.Infraestructure.Services
 
                 MQMessage mqMsg = new();
 
-                mqMsg.WriteString(message);
+                var msg = new Message(message);
+
+                mqMsg.WriteString(msg.ToString());
                 mqMsg.Format = MQC.MQFMT_STRING;
 
 
@@ -106,6 +126,39 @@ namespace TesteIbmMQ.Infraestructure.Services
                 Console.Write(e.Reason);
                 Console.Write(e.StackTrace);
             }
+        }
+
+        public async Task SendMessageToQueue(string queue, string message, int retryCount, DateTime readTime)
+        {
+            InitQueueForPut(queue);
+            try
+            {
+                MQMessage mqMsg = new();
+
+                var msg = new Message(message, retryCount, readTime);
+
+                mqMsg.WriteString(msg.ToString());
+                mqMsg.Format = MQC.MQFMT_STRING;
+
+                MQPutMessageOptions mqPutMsgOpts = new();
+                mqQueue.Put(mqMsg, mqPutMsgOpts);
+                Console.WriteLine(message + " enviada");
+
+                mqQueue?.Close();
+                mqQMgr?.Disconnect();
+            }
+            catch (MQException e)
+            {
+                Console.Write(e);
+                Console.Write(e.Message);
+                Console.Write(e.Reason);
+                Console.Write(e.StackTrace);
+            }
+        }
+
+        private bool IsQueueEmpty()
+        {
+            return mqQueue.CurrentDepth == 0;
         }
 
         private void InitQueueForPut(string queue)
