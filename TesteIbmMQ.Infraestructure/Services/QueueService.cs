@@ -34,9 +34,19 @@ namespace TesteIbmMQ.Infraestructure.Services
                     { MQC.USER_ID_PROPERTY, settings.Username },
                 { MQC.PASSWORD_PROPERTY, settings.Password }
                 };
+            try
+            {
+                logger.LogInformation("Connecting to " + settings.QueueManagerName);
+                mqQMgr = new MQQueueManager(settings.QueueManagerName, props);
+                mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_INPUT_SHARED | MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_BROWSE | MQC.MQOO_INQUIRE);
+            }
+            catch (Exception e)
+            {
+
+                logger.LogError(e, "Connecting to " + settings.QueueManagerName);
+                throw;
+            }
             logger.LogInformation("Connecting to " + settings.QueueManagerName);
-            mqQMgr = new MQQueueManager(settings.QueueManagerName, props);
-            mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_INPUT_SHARED | MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_BROWSE);
         }
 
         public async Task StartQueueProcessor(Func<string, string, CancellationToken, Task> callBack, string queue, CancellationToken stoppingToken)

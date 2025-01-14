@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Oracle.ManagedDataAccess.Client;
+using System.Data;
 using TesteIbmMQ.Domain.Repositories;
 using TesteIbmMQ.Domain.Services;
 using TesteIbmMQ.Domain.Settings;
@@ -19,6 +21,8 @@ namespace TesteIbmMQ.CrossCutting.Extensions
             var retrySettings = new RetrySettings();
             configuration.GetSection("RetrySettings").Bind(retrySettings);
             services.AddSingleton(retrySettings);
+
+            services.AddSingleton<IDbConnection>(sp => new OracleConnection(configuration.GetConnectionString("ConnectionStrings.DefaultConnection")));
 
             services.AddScoped<IQueueService, QueueService>();
             services.AddScoped<IFilaTesteRepository, FilaTesteRepository>();
