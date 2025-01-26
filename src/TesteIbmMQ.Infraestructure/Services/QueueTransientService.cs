@@ -110,9 +110,7 @@ namespace TesteIbmMQ.Infraestructure.Services
 
                 MQMessage mqMsg = new();
 
-                var msg = new Message(message);
-
-                mqMsg.WriteString(msg.ToString());
+                mqMsg.WriteString(message);
                 mqMsg.Format = MQC.MQFMT_STRING;
 
 
@@ -137,13 +135,19 @@ namespace TesteIbmMQ.Infraestructure.Services
             return mqQueue.CurrentDepth == 0;
         }
 
+        public int GetQueueDepth(string queue)
+        {
+            InitQueue(queue);
+            return mqQueue.CurrentDepth;
+        }
+
         private void InitQueueForPut(string queue)
         {
             if (mqQMgr != null)
             {
                 if (mqQueue == null)
                 {
-                    mqQueue = mqQMgr.AccessQueue(Settings.Queues[queue], MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
+                    mqQueue = mqQMgr.AccessQueue(queue, MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
                 }
                 return;
             }
@@ -157,7 +161,7 @@ namespace TesteIbmMQ.Infraestructure.Services
         { MQC.PASSWORD_PROPERTY, Settings.Password }
     };
             mqQMgr = new MQQueueManager(Settings.QueueManagerName, props);
-            mqQueue = mqQMgr.AccessQueue(Settings.Queues[queue], MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
+            mqQueue = mqQMgr.AccessQueue(queue, MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
         }
     }
 }

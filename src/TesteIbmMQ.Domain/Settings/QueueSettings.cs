@@ -40,5 +40,16 @@
             Port = 
             Username = string.Empty;
         }
+
+        public bool CheckSettings()
+        {
+            return !string.IsNullOrEmpty(Host) &&
+                   !string.IsNullOrEmpty(Channel) &&
+                   !string.IsNullOrEmpty(Port) &&
+                   !string.IsNullOrEmpty(QueueManagerName) &&
+                   !string.IsNullOrEmpty(Username) &&
+                   !string.IsNullOrEmpty(Password);
+        }
     }
+
 }

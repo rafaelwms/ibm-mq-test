@@ -2,6 +2,7 @@ using TesteIbmMQ.Domain.Services;
 using TesteIbmMQ.Domain.Settings;
 using TesteIbmMQ.Domain.Utils;
 using TesteIbmMQ.Infraestructure.Services;
+using TesteIbmMQ.WinFormApp.Common;
 
 namespace TesteIbmMQ.WinFormApp.Forms
 {
@@ -17,41 +18,17 @@ namespace TesteIbmMQ.WinFormApp.Forms
         public ConnectionForm(MainForm mainForm, QueueConfigurationSettings settings)
         {
             InitializeComponent();
+            tbConnPort.AllowOnlyNumbers();
             MainForm = mainForm;
             Settings = settings;
-
+            FillForm(Settings);
         }
 
 
         private void btnConnectionTest_Click(object sender, EventArgs e)
         {
-            if (Settings == null)
-            {
-                Settings = ContentFileUtil.INITIAL_SETTINGS;
-                FillForm(Settings);
-                return;
-            }
             Settings = FormToSettings();
-
-            var queueService = new QueueTransientService(Settings.QueueSettings);
-
-            try
-            {
-                if (Settings.QueueSettings.Queues.Any())
-                {
-                    foreach (var queue in Settings.QueueSettings.Queues)
-                    {
-                        queueService.InitQueue(queue.Key);
-                    }
-                    MessageBox.Show($"Connection successful");
-                }
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Connection Failed");
-            }
-
-
+            Settings.QueueSettings.CheckConnection();
         }
 
         private void btnQueueAdd_Click(object sender, EventArgs e)
@@ -139,7 +116,7 @@ namespace TesteIbmMQ.WinFormApp.Forms
             this.tbConnName.Text = settings.SettingsName;
             this.tbConnChannel.Text = settings.QueueSettings.Channel;
             this.tbConnHost.Text = settings.QueueSettings.Host;
-            this.tbConnPort.Text = settings.QueueSettings.Port.ToString();
+            this.tbConnPort.Text = settings.QueueSettings.Port;
             this.tbConnQueueManager.Text = settings.QueueSettings.QueueManagerName;
             this.tbConnUser.Text = settings.QueueSettings.Username;
             this.tbConnPassword.Text = settings.QueueSettings.Password;
@@ -149,18 +126,23 @@ namespace TesteIbmMQ.WinFormApp.Forms
 
         private QueueConfigurationSettings FormToSettings()
         {
-            var settings = new QueueConfigurationSettings();
-            settings.QueueSettings = new QueueSettings();
-            settings.SettingsName = tbConnName.Text;
-            settings.QueueSettings.Channel = tbConnChannel.Text;
-            settings.QueueSettings.Host = tbConnHost.Text;
-            settings.QueueSettings.Port = tbConnPort.Text;
-            settings.QueueSettings.QueueManagerName = tbConnQueueManager.Text;
-            settings.QueueSettings.Username = tbConnUser.Text;
-            settings.QueueSettings.Password = tbConnPassword.Text;
-            settings.QueueSettings.Queues = GetKeyValuePairs(lvQueues);
-            settings.SavedMessages = GetKeyValuePairs(lvMessages);
-            return settings;
+            if (Settings == null)
+            {
+                Settings = new QueueConfigurationSettings();
+                Settings.QueueSettings = new QueueSettings();
+
+            }
+            Settings.QueueSettings = new QueueSettings();
+            Settings.SettingsName = tbConnName.Text;
+            Settings.QueueSettings.Channel = tbConnChannel.Text;
+            Settings.QueueSettings.Host = tbConnHost.Text;
+            Settings.QueueSettings.Port = tbConnPort.Text;
+            Settings.QueueSettings.QueueManagerName = tbConnQueueManager.Text;
+            Settings.QueueSettings.Username = tbConnUser.Text;
+            Settings.QueueSettings.Password = tbConnPassword.Text;
+            Settings.QueueSettings.Queues = GetKeyValuePairs(lvQueues);
+            Settings.SavedMessages = GetKeyValuePairs(lvMessages);
+            return Settings;
         }
 
         private Dictionary<string, string> GetKeyValuePairs(ListView lv)
@@ -191,6 +173,14 @@ namespace TesteIbmMQ.WinFormApp.Forms
             FillForm(Settings);
             return;
 
+        }
+
+        private void btnConnectionCancel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to cancel?", "Cancel", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

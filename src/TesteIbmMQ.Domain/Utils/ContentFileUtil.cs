@@ -7,14 +7,14 @@ namespace TesteIbmMQ.Domain.Utils
         public static QueueConfigurationSettings INITIAL_SETTINGS = new QueueConfigurationSettings
         {
             Id = Guid.NewGuid().ToString(),
-            SettingsName = "Example Settings",
+            SettingsName = "Azure Settings",
             QueueSettings = new QueueSettings
             {
-                Host = "localhost",
+                Host = "20.127.160.122",
                 Channel = "DEV.APP.SVRCONN",
                 Port = "1414",
-                Username = "admin",
-                Password = string.Empty,
+                Username = "app",
+                Password = "passw0rd",
                 QueueManagerName = "QM1",
                 Queues = new Dictionary<string, string>
                 {
@@ -25,7 +25,7 @@ namespace TesteIbmMQ.Domain.Utils
             },
             SavedMessages = new Dictionary<string, string>
                 {
-                    { "Test Message", @"{ ""Message"" : { ""Name"" : ""Example"" }}" }
+                    { "Test Message", @"{ ""Data"" : { ""Name"" : ""Example"" }}" }
                 },
 
         };

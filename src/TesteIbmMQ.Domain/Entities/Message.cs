@@ -7,7 +7,7 @@ namespace TesteIbmMQ.Domain.Entities
     {
         public Dictionary<string, string>? Header { get; set; }
 
-        public object? Body { get; set; }
+        public object? Data { get; set; }
 
         public override string ToString()
         {
@@ -21,7 +21,7 @@ namespace TesteIbmMQ.Domain.Entities
                 return;
             }
             Header = message.GetPropertyValue<Dictionary<string, string>>("Header");
-            Body = message.GetPropertyValue<object>("Body");
+            Data = message.GetPropertyValue<object>("Data");
         }
 
         public Message()
@@ -35,13 +35,13 @@ namespace TesteIbmMQ.Domain.Entities
             {
                 return;
             }
-            Body = message is string ? JsonConvert.DeserializeObject<object>((string)message) : message;
+            Data = message is string ? JsonConvert.DeserializeObject<object>((string)message) : message;
         }
         public Message(object message, int retries, DateTime nextRetry)
         {
             if (message != null)
             {
-                Body = message is string ? JsonConvert.DeserializeObject<object>((string) message) : message ;
+                Data = message is string ? JsonConvert.DeserializeObject<object>((string) message) : message ;
             }
             Header = new Dictionary<string, string>
             {

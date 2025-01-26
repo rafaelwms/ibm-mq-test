@@ -12,9 +12,11 @@
                 SavedSettings = new List<QueueConfigurationSettings>();
             }
 
-            if(SavedSettings.Where(st=> st.Id == settings.Id).Any())
+            var saved = SavedSettings.FirstOrDefault(x => x.Id == settings.Id);
+
+            if (saved != null)
             {
-                SavedSettings.Remove(settings);
+                SavedSettings.Remove(saved);
             }
 
             SavedSettings.Add(settings);

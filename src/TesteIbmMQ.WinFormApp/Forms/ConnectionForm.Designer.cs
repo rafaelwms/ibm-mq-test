@@ -80,11 +80,11 @@
             gbConnections.Controls.Add(tbConnHost);
             gbConnections.Controls.Add(label1);
             gbConnections.Controls.Add(tbConnName);
-            gbConnections.Location = new Point(14, 34);
-            gbConnections.Margin = new Padding(1, 2, 1, 2);
+            gbConnections.Location = new Point(24, 56);
+            gbConnections.Margin = new Padding(2, 3, 2, 3);
             gbConnections.Name = "gbConnections";
-            gbConnections.Padding = new Padding(1, 2, 1, 2);
-            gbConnections.Size = new Size(267, 531);
+            gbConnections.Padding = new Padding(2, 3, 2, 3);
+            gbConnections.Size = new Size(454, 871);
             gbConnections.TabIndex = 0;
             gbConnections.TabStop = false;
             gbConnections.Text = "Connection";
@@ -92,128 +92,128 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(21, 452);
-            label7.Margin = new Padding(1, 0, 1, 0);
+            label7.Location = new Point(36, 741);
+            label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(91, 25);
+            label7.Size = new Size(150, 41);
             label7.TabIndex = 14;
             label7.Text = "Password:";
             // 
             // tbConnPassword
             // 
-            tbConnPassword.Location = new Point(21, 478);
-            tbConnPassword.Margin = new Padding(1, 2, 1, 2);
+            tbConnPassword.Location = new Point(36, 784);
+            tbConnPassword.Margin = new Padding(2, 3, 2, 3);
             tbConnPassword.Name = "tbConnPassword";
             tbConnPassword.PasswordChar = '●';
-            tbConnPassword.Size = new Size(207, 31);
+            tbConnPassword.Size = new Size(349, 47);
             tbConnPassword.TabIndex = 13;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(21, 380);
-            label6.Margin = new Padding(1, 0, 1, 0);
+            label6.Location = new Point(36, 623);
+            label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(51, 25);
+            label6.Size = new Size(85, 41);
             label6.TabIndex = 12;
             label6.Text = "User:";
             // 
             // tbConnUser
             // 
-            tbConnUser.Location = new Point(21, 407);
-            tbConnUser.Margin = new Padding(1, 2, 1, 2);
+            tbConnUser.Location = new Point(36, 667);
+            tbConnUser.Margin = new Padding(2, 3, 2, 3);
             tbConnUser.Name = "tbConnUser";
-            tbConnUser.Size = new Size(207, 31);
+            tbConnUser.Size = new Size(349, 47);
             tbConnUser.TabIndex = 11;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(21, 309);
-            label5.Margin = new Padding(1, 0, 1, 0);
+            label5.Location = new Point(36, 507);
+            label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(143, 25);
+            label5.Size = new Size(240, 41);
             label5.TabIndex = 10;
             label5.Text = "Queue Manager:";
             // 
             // tbConnQueueManager
             // 
-            tbConnQueueManager.Location = new Point(21, 337);
-            tbConnQueueManager.Margin = new Padding(1, 2, 1, 2);
+            tbConnQueueManager.Location = new Point(36, 553);
+            tbConnQueueManager.Margin = new Padding(2, 3, 2, 3);
             tbConnQueueManager.Name = "tbConnQueueManager";
-            tbConnQueueManager.Size = new Size(207, 31);
+            tbConnQueueManager.Size = new Size(349, 47);
             tbConnQueueManager.TabIndex = 9;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(21, 168);
-            label4.Margin = new Padding(1, 0, 1, 0);
+            label4.Location = new Point(36, 276);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(48, 25);
+            label4.Size = new Size(79, 41);
             label4.TabIndex = 8;
             label4.Text = "Port:";
             // 
             // tbConnPort
             // 
-            tbConnPort.Location = new Point(21, 195);
-            tbConnPort.Margin = new Padding(1, 2, 1, 2);
+            tbConnPort.Location = new Point(36, 320);
+            tbConnPort.Margin = new Padding(2, 3, 2, 3);
             tbConnPort.Name = "tbConnPort";
-            tbConnPort.Size = new Size(97, 31);
+            tbConnPort.Size = new Size(162, 47);
             tbConnPort.TabIndex = 7;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(21, 238);
-            label3.Margin = new Padding(1, 0, 1, 0);
+            label3.Location = new Point(36, 390);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(79, 25);
+            label3.Size = new Size(133, 41);
             label3.TabIndex = 6;
             label3.Text = "Channel:";
             // 
             // tbConnChannel
             // 
-            tbConnChannel.Location = new Point(21, 265);
-            tbConnChannel.Margin = new Padding(1, 2, 1, 2);
+            tbConnChannel.Location = new Point(36, 435);
+            tbConnChannel.Margin = new Padding(2, 3, 2, 3);
             tbConnChannel.Name = "tbConnChannel";
-            tbConnChannel.Size = new Size(207, 31);
+            tbConnChannel.Size = new Size(349, 47);
             tbConnChannel.TabIndex = 5;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(21, 97);
-            label2.Margin = new Padding(1, 0, 1, 0);
+            label2.Location = new Point(36, 159);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(54, 25);
+            label2.Size = new Size(87, 41);
             label2.TabIndex = 4;
             label2.Text = "Host:";
             // 
             // tbConnHost
             // 
-            tbConnHost.Location = new Point(21, 123);
-            tbConnHost.Margin = new Padding(1, 2, 1, 2);
+            tbConnHost.Location = new Point(36, 202);
+            tbConnHost.Margin = new Padding(2, 3, 2, 3);
             tbConnHost.Name = "tbConnHost";
-            tbConnHost.Size = new Size(207, 31);
+            tbConnHost.Size = new Size(349, 47);
             tbConnHost.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(21, 27);
-            label1.Margin = new Padding(1, 0, 1, 0);
+            label1.Location = new Point(36, 44);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(63, 25);
+            label1.Size = new Size(104, 41);
             label1.TabIndex = 2;
             label1.Text = "Name:";
             // 
             // tbConnName
             // 
-            tbConnName.Location = new Point(21, 53);
-            tbConnName.Margin = new Padding(1, 2, 1, 2);
+            tbConnName.Location = new Point(36, 87);
+            tbConnName.Margin = new Padding(2, 3, 2, 3);
             tbConnName.Name = "tbConnName";
-            tbConnName.Size = new Size(207, 31);
+            tbConnName.Size = new Size(349, 47);
             tbConnName.TabIndex = 0;
             // 
             // groupBox1
@@ -221,21 +221,21 @@
             groupBox1.Controls.Add(btnQueueRemove);
             groupBox1.Controls.Add(btnQueueAdd);
             groupBox1.Controls.Add(lvQueues);
-            groupBox1.Location = new Point(292, 34);
-            groupBox1.Margin = new Padding(1, 2, 1, 2);
+            groupBox1.Location = new Point(496, 56);
+            groupBox1.Margin = new Padding(2, 3, 2, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(1, 2, 1, 2);
-            groupBox1.Size = new Size(419, 293);
+            groupBox1.Padding = new Padding(2, 3, 2, 3);
+            groupBox1.Size = new Size(712, 481);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Queues";
             // 
             // btnQueueRemove
             // 
-            btnQueueRemove.Location = new Point(234, 237);
-            btnQueueRemove.Margin = new Padding(1, 2, 1, 2);
+            btnQueueRemove.Location = new Point(398, 389);
+            btnQueueRemove.Margin = new Padding(2, 3, 2, 3);
             btnQueueRemove.Name = "btnQueueRemove";
-            btnQueueRemove.Size = new Size(170, 35);
+            btnQueueRemove.Size = new Size(289, 57);
             btnQueueRemove.TabIndex = 2;
             btnQueueRemove.Text = "Remove Queue";
             btnQueueRemove.UseVisualStyleBackColor = true;
@@ -243,10 +243,10 @@
             // 
             // btnQueueAdd
             // 
-            btnQueueAdd.Location = new Point(13, 237);
-            btnQueueAdd.Margin = new Padding(1, 2, 1, 2);
+            btnQueueAdd.Location = new Point(22, 389);
+            btnQueueAdd.Margin = new Padding(2, 3, 2, 3);
             btnQueueAdd.Name = "btnQueueAdd";
-            btnQueueAdd.Size = new Size(170, 35);
+            btnQueueAdd.Size = new Size(289, 57);
             btnQueueAdd.TabIndex = 1;
             btnQueueAdd.Text = "Add Queue";
             btnQueueAdd.UseVisualStyleBackColor = true;
@@ -256,10 +256,11 @@
             // 
             lvQueues.Columns.AddRange(new ColumnHeader[] { chQueueAlias, chQueueAddress });
             lvQueues.FullRowSelect = true;
-            lvQueues.Location = new Point(13, 41);
-            lvQueues.Margin = new Padding(1, 2, 1, 2);
+            lvQueues.Location = new Point(22, 67);
+            lvQueues.Margin = new Padding(2, 3, 2, 3);
+            lvQueues.MultiSelect = false;
             lvQueues.Name = "lvQueues";
-            lvQueues.Size = new Size(394, 182);
+            lvQueues.Size = new Size(667, 296);
             lvQueues.TabIndex = 0;
             lvQueues.UseCompatibleStateImageBehavior = false;
             lvQueues.View = View.Details;
@@ -280,21 +281,21 @@
             groupBox2.Controls.Add(btnMessageRemove);
             groupBox2.Controls.Add(btnMessageAdd);
             groupBox2.Controls.Add(lvMessages);
-            groupBox2.Location = new Point(292, 340);
-            groupBox2.Margin = new Padding(1, 2, 1, 2);
+            groupBox2.Location = new Point(496, 558);
+            groupBox2.Margin = new Padding(2, 3, 2, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(1, 2, 1, 2);
-            groupBox2.Size = new Size(419, 225);
+            groupBox2.Padding = new Padding(2, 3, 2, 3);
+            groupBox2.Size = new Size(712, 369);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Example Messages";
             // 
             // btnMessageRemove
             // 
-            btnMessageRemove.Location = new Point(234, 163);
-            btnMessageRemove.Margin = new Padding(1, 2, 1, 2);
+            btnMessageRemove.Location = new Point(398, 267);
+            btnMessageRemove.Margin = new Padding(2, 3, 2, 3);
             btnMessageRemove.Name = "btnMessageRemove";
-            btnMessageRemove.Size = new Size(170, 35);
+            btnMessageRemove.Size = new Size(289, 57);
             btnMessageRemove.TabIndex = 2;
             btnMessageRemove.Text = "Remove Message";
             btnMessageRemove.UseVisualStyleBackColor = true;
@@ -302,10 +303,10 @@
             // 
             // btnMessageAdd
             // 
-            btnMessageAdd.Location = new Point(13, 163);
-            btnMessageAdd.Margin = new Padding(1, 2, 1, 2);
+            btnMessageAdd.Location = new Point(22, 267);
+            btnMessageAdd.Margin = new Padding(2, 3, 2, 3);
             btnMessageAdd.Name = "btnMessageAdd";
-            btnMessageAdd.Size = new Size(170, 35);
+            btnMessageAdd.Size = new Size(289, 57);
             btnMessageAdd.TabIndex = 1;
             btnMessageAdd.Text = "Add Message";
             btnMessageAdd.UseVisualStyleBackColor = true;
@@ -315,10 +316,11 @@
             // 
             lvMessages.Columns.AddRange(new ColumnHeader[] { chMessageAlias, chMessageText });
             lvMessages.FullRowSelect = true;
-            lvMessages.Location = new Point(13, 41);
-            lvMessages.Margin = new Padding(1, 2, 1, 2);
+            lvMessages.Location = new Point(22, 67);
+            lvMessages.Margin = new Padding(2, 3, 2, 3);
+            lvMessages.MultiSelect = false;
             lvMessages.Name = "lvMessages";
-            lvMessages.Size = new Size(394, 107);
+            lvMessages.Size = new Size(667, 173);
             lvMessages.TabIndex = 0;
             lvMessages.UseCompatibleStateImageBehavior = false;
             lvMessages.View = View.Details;
@@ -336,20 +338,21 @@
             // 
             // btnConnectionCancel
             // 
-            btnConnectionCancel.Location = new Point(316, 577);
-            btnConnectionCancel.Margin = new Padding(1, 2, 1, 2);
+            btnConnectionCancel.Location = new Point(537, 946);
+            btnConnectionCancel.Margin = new Padding(2, 3, 2, 3);
             btnConnectionCancel.Name = "btnConnectionCancel";
-            btnConnectionCancel.Size = new Size(170, 35);
+            btnConnectionCancel.Size = new Size(289, 57);
             btnConnectionCancel.TabIndex = 3;
             btnConnectionCancel.Text = "Cancel";
             btnConnectionCancel.UseVisualStyleBackColor = true;
+            btnConnectionCancel.Click += btnConnectionCancel_Click;
             // 
             // btnConnectionSave
             // 
-            btnConnectionSave.Location = new Point(539, 577);
-            btnConnectionSave.Margin = new Padding(1, 2, 1, 2);
+            btnConnectionSave.Location = new Point(916, 946);
+            btnConnectionSave.Margin = new Padding(2, 3, 2, 3);
             btnConnectionSave.Name = "btnConnectionSave";
-            btnConnectionSave.Size = new Size(170, 35);
+            btnConnectionSave.Size = new Size(289, 57);
             btnConnectionSave.TabIndex = 4;
             btnConnectionSave.Text = "Save";
             btnConnectionSave.UseVisualStyleBackColor = true;
@@ -357,10 +360,10 @@
             // 
             // btnConnectionTest
             // 
-            btnConnectionTest.Location = new Point(37, 577);
-            btnConnectionTest.Margin = new Padding(1, 2, 1, 2);
+            btnConnectionTest.Location = new Point(63, 946);
+            btnConnectionTest.Margin = new Padding(2, 3, 2, 3);
             btnConnectionTest.Name = "btnConnectionTest";
-            btnConnectionTest.Size = new Size(170, 35);
+            btnConnectionTest.Size = new Size(289, 57);
             btnConnectionTest.TabIndex = 5;
             btnConnectionTest.Text = "Test Connection";
             btnConnectionTest.UseVisualStyleBackColor = true;
@@ -368,9 +371,9 @@
             // 
             // ConnectionForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 630);
+            ClientSize = new Size(1224, 1014);
             Controls.Add(btnConnectionTest);
             Controls.Add(btnConnectionSave);
             Controls.Add(btnConnectionCancel);
@@ -379,10 +382,10 @@
             Controls.Add(gbConnections);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(1, 2, 1, 2);
+            Margin = new Padding(2, 3, 2, 3);
             MaximizeBox = false;
-            MaximumSize = new Size(752, 706);
-            MinimumSize = new Size(752, 635);
+            MaximumSize = new Size(1256, 1102);
+            MinimumSize = new Size(1256, 985);
             Name = "ConnectionForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Connection Settings";

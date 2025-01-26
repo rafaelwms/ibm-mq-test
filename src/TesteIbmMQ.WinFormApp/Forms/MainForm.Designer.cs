@@ -31,6 +31,7 @@
             ColumnHeader colMessageText;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             groupBox1 = new GroupBox();
+            lblUser = new Label();
             btnConnectionEdit = new Button();
             btnConnEdit = new Button();
             btnTetst = new Button();
@@ -48,13 +49,15 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
             saveToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             groupBox2 = new GroupBox();
             label4 = new Label();
             button2 = new Button();
             button1 = new Button();
-            textBox1 = new TextBox();
+            tbCustomMessage = new TextBox();
             label3 = new Label();
-            listView1 = new ListView();
+            lvMessages = new ListView();
             colMessageAlias = new ColumnHeader();
             colMessageText = new ColumnHeader();
             groupBox1.SuspendLayout();
@@ -62,8 +65,14 @@
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
+            // colMessageText
+            // 
+            colMessageText.Text = "Message";
+            colMessageText.Width = 2000;
+            // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(lblUser);
             groupBox1.Controls.Add(btnConnectionEdit);
             groupBox1.Controls.Add(btnConnEdit);
             groupBox1.Controls.Add(btnTetst);
@@ -75,29 +84,40 @@
             groupBox1.Controls.Add(lblHost);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(cbQueueSettings);
-            groupBox1.Location = new Point(15, 51);
-            groupBox1.Margin = new Padding(2);
+            groupBox1.Location = new Point(26, 84);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2);
-            groupBox1.Size = new Size(704, 306);
+            groupBox1.Size = new Size(1197, 539);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Connection Center";
             // 
+            // lblUser
+            // 
+            lblUser.AutoSize = true;
+            lblUser.Location = new Point(36, 397);
+            lblUser.Margin = new Padding(5, 0, 5, 0);
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(85, 41);
+            lblUser.TabIndex = 11;
+            lblUser.Text = "User:";
+            // 
             // btnConnectionEdit
             // 
-            btnConnectionEdit.Location = new Point(273, 250);
+            btnConnectionEdit.Location = new Point(464, 463);
+            btnConnectionEdit.Margin = new Padding(5);
             btnConnectionEdit.Name = "btnConnectionEdit";
-            btnConnectionEdit.Size = new Size(191, 34);
+            btnConnectionEdit.Size = new Size(325, 56);
             btnConnectionEdit.TabIndex = 10;
             btnConnectionEdit.Text = "Edit Connection";
             btnConnectionEdit.UseVisualStyleBackColor = true;
+            btnConnectionEdit.Click += btnConnectionEdit_Click;
             // 
             // btnConnEdit
             // 
-            btnConnEdit.Location = new Point(494, 250);
+            btnConnEdit.Location = new Point(840, 463);
+            btnConnEdit.Margin = new Padding(5);
             btnConnEdit.Name = "btnConnEdit";
-            btnConnEdit.Size = new Size(191, 34);
+            btnConnEdit.Size = new Size(325, 56);
             btnConnEdit.TabIndex = 9;
             btnConnEdit.Text = "New Connection";
             btnConnEdit.UseVisualStyleBackColor = true;
@@ -105,19 +125,22 @@
             // 
             // btnTetst
             // 
-            btnTetst.Location = new Point(20, 250);
+            btnTetst.Location = new Point(34, 463);
+            btnTetst.Margin = new Padding(5);
             btnTetst.Name = "btnTetst";
-            btnTetst.Size = new Size(229, 34);
+            btnTetst.Size = new Size(389, 56);
             btnTetst.TabIndex = 8;
             btnTetst.Text = "Test Connection";
             btnTetst.UseVisualStyleBackColor = true;
+            btnTetst.Click += btnTetst_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(273, 33);
+            label2.Location = new Point(464, 54);
+            label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(72, 25);
+            label2.Size = new Size(120, 41);
             label2.TabIndex = 7;
             label2.Text = "Queues";
             // 
@@ -125,87 +148,95 @@
             // 
             lvQueues.Columns.AddRange(new ColumnHeader[] { colQueueAlias, colQueueName });
             lvQueues.FullRowSelect = true;
-            lvQueues.Location = new Point(273, 60);
+            lvQueues.Location = new Point(464, 98);
+            lvQueues.Margin = new Padding(5);
+            lvQueues.MultiSelect = false;
             lvQueues.Name = "lvQueues";
-            lvQueues.Size = new Size(412, 172);
+            lvQueues.Size = new Size(698, 340);
             lvQueues.TabIndex = 6;
             lvQueues.UseCompatibleStateImageBehavior = false;
             lvQueues.View = View.Details;
+            lvQueues.MouseDoubleClick += lvQueues_MouseDoubleClick;
             // 
             // colQueueAlias
             // 
             colQueueAlias.Text = "Alias";
-            colQueueAlias.Width = 100;
+            colQueueAlias.Width = 250;
             // 
             // colQueueName
             // 
             colQueueName.Text = "Queue";
-            colQueueName.Width = 400;
+            colQueueName.Width = 1000;
             // 
             // lblQM
             // 
             lblQM.AutoSize = true;
-            lblQM.Location = new Point(21, 207);
+            lblQM.Location = new Point(36, 339);
+            lblQM.Margin = new Padding(5, 0, 5, 0);
             lblQM.Name = "lblQM";
-            lblQM.Size = new Size(46, 25);
+            lblQM.Size = new Size(75, 41);
             lblQM.TabIndex = 5;
             lblQM.Text = "QM:";
             // 
             // lblChannel
             // 
             lblChannel.AutoSize = true;
-            lblChannel.Location = new Point(21, 173);
+            lblChannel.Location = new Point(36, 284);
+            lblChannel.Margin = new Padding(5, 0, 5, 0);
             lblChannel.Name = "lblChannel";
-            lblChannel.Size = new Size(79, 25);
+            lblChannel.Size = new Size(133, 41);
             lblChannel.TabIndex = 4;
             lblChannel.Text = "Channel:";
             // 
             // lblPort
             // 
             lblPort.AutoSize = true;
-            lblPort.Location = new Point(21, 139);
+            lblPort.Location = new Point(36, 228);
+            lblPort.Margin = new Padding(5, 0, 5, 0);
             lblPort.Name = "lblPort";
-            lblPort.Size = new Size(48, 25);
+            lblPort.Size = new Size(79, 41);
             lblPort.TabIndex = 3;
             lblPort.Text = "Port:";
             // 
             // lblHost
             // 
             lblHost.AutoSize = true;
-            lblHost.Location = new Point(21, 104);
+            lblHost.Location = new Point(36, 171);
+            lblHost.Margin = new Padding(5, 0, 5, 0);
             lblHost.Name = "lblHost";
-            lblHost.Size = new Size(54, 25);
+            lblHost.Size = new Size(87, 41);
             lblHost.TabIndex = 2;
             lblHost.Text = "Host:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(21, 33);
+            label1.Location = new Point(36, 54);
+            label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(125, 25);
+            label1.Size = new Size(207, 41);
             label1.TabIndex = 1;
             label1.Text = "Configuration:";
             // 
             // cbQueueSettings
             // 
+            cbQueueSettings.DropDownStyle = ComboBoxStyle.DropDownList;
             cbQueueSettings.FormattingEnabled = true;
-            cbQueueSettings.Location = new Point(21, 60);
-            cbQueueSettings.Margin = new Padding(2);
+            cbQueueSettings.Location = new Point(36, 98);
             cbQueueSettings.Name = "cbQueueSettings";
-            cbQueueSettings.Size = new Size(229, 33);
+            cbQueueSettings.Size = new Size(386, 49);
             cbQueueSettings.TabIndex = 0;
+            cbQueueSettings.SelectedIndexChanged += cbQueueSettings_SelectedIndexChanged;
             // 
             // menuStrip1
             // 
             menuStrip1.GripStyle = ToolStripGripStyle.Visible;
             menuStrip1.ImageScalingSize = new Size(40, 40);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(2, 1, 0, 1);
             menuStrip1.RenderMode = ToolStripRenderMode.System;
-            menuStrip1.Size = new Size(738, 31);
+            menuStrip1.Size = new Size(1255, 49);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -213,33 +244,50 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1, saveToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(54, 29);
+            fileToolStripMenuItem.Size = new Size(87, 45);
             fileToolStripMenuItem.Text = "File";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(270, 34);
-            toolStripMenuItem1.Text = "Load";
+            toolStripMenuItem1.Size = new Size(439, 54);
+            toolStripMenuItem1.Text = "Load Configuration";
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(270, 34);
-            saveToolStripMenuItem.Text = "Save";
+            saveToolStripMenuItem.Size = new Size(439, 54);
+            saveToolStripMenuItem.Text = "Save Configuration";
+            saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(104, 45);
+            helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(287, 54);
+            aboutToolStripMenuItem.Text = "About...";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(button2);
             groupBox2.Controls.Add(button1);
-            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(tbCustomMessage);
             groupBox2.Controls.Add(label3);
-            groupBox2.Controls.Add(listView1);
-            groupBox2.Location = new Point(15, 385);
+            groupBox2.Controls.Add(lvMessages);
+            groupBox2.Location = new Point(26, 631);
+            groupBox2.Margin = new Padding(5);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(704, 304);
+            groupBox2.Padding = new Padding(5);
+            groupBox2.Size = new Size(1197, 499);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Message Testing";
@@ -247,77 +295,81 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(21, 223);
+            label4.Location = new Point(36, 366);
+            label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(149, 25);
+            label4.Size = new Size(247, 41);
             label4.TabIndex = 13;
             label4.Text = "Custom Message";
             // 
             // button2
             // 
-            button2.Location = new Point(532, 207);
+            button2.Location = new Point(904, 339);
+            button2.Margin = new Padding(5);
             button2.Name = "button2";
-            button2.Size = new Size(153, 34);
+            button2.Size = new Size(260, 56);
             button2.TabIndex = 12;
             button2.Text = "Send Selected";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(532, 251);
+            button1.Location = new Point(904, 412);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
-            button1.Size = new Size(153, 34);
+            button1.Size = new Size(260, 56);
             button1.TabIndex = 11;
             button1.Text = "Send Custom";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
-            // textBox1
+            // tbCustomMessage
             // 
-            textBox1.Location = new Point(21, 251);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(505, 31);
-            textBox1.TabIndex = 4;
+            tbCustomMessage.Location = new Point(36, 412);
+            tbCustomMessage.Margin = new Padding(5);
+            tbCustomMessage.Name = "tbCustomMessage";
+            tbCustomMessage.Size = new Size(856, 47);
+            tbCustomMessage.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(21, 35);
+            label3.Location = new Point(36, 57);
+            label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(143, 25);
+            label3.Size = new Size(236, 41);
             label3.TabIndex = 3;
             label3.Text = "Saved Messages";
             // 
-            // listView1
+            // lvMessages
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { colMessageAlias, colMessageText });
-            listView1.Location = new Point(21, 63);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(664, 138);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            lvMessages.Columns.AddRange(new ColumnHeader[] { colMessageAlias, colMessageText });
+            lvMessages.FullRowSelect = true;
+            lvMessages.Location = new Point(36, 103);
+            lvMessages.Margin = new Padding(5);
+            lvMessages.MultiSelect = false;
+            lvMessages.Name = "lvMessages";
+            lvMessages.Size = new Size(1126, 224);
+            lvMessages.TabIndex = 0;
+            lvMessages.UseCompatibleStateImageBehavior = false;
+            lvMessages.View = View.Details;
             // 
             // colMessageAlias
             // 
             colMessageAlias.Text = "Alias";
-            colMessageAlias.Width = 200;
-            // 
-            // colMessageText
-            // 
-            colMessageText.Text = "Message";
-            colMessageText.Width = 500;
+            colMessageAlias.Width = 250;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(738, 719);
+            ClientSize = new Size(1255, 1179);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(2);
             MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -354,11 +406,14 @@
         private Button btnConnectionEdit;
         private GroupBox groupBox2;
         private Label label3;
-        private ListView listView1;
+        private ListView lvMessages;
         private Label label4;
         private Button button2;
         private Button button1;
-        private TextBox textBox1;
+        private TextBox tbCustomMessage;
         private ColumnHeader colMessageAlias;
+        private Label lblUser;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }

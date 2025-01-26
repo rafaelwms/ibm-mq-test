@@ -1,4 +1,5 @@
 ﻿using TesteIbmMQ.Domain.Settings;
+using TesteIbmMQ.WinFormApp.Common;
 
 namespace TesteIbmMQ.WinFormApp.Forms
 {
@@ -54,7 +55,7 @@ namespace TesteIbmMQ.WinFormApp.Forms
         {
             if(string.IsNullOrWhiteSpace(tbAlias.Text.Trim()) || string.IsNullOrEmpty(tbText.Text.Trim()))
             {
-                MessageBox.Show($"Alias and {(IsQueueData ? "Queue" : "Message")} are required fields.", "WARNING",MessageBoxButtons.OK ,MessageBoxIcon.Warning);
+                CommonFormActions.ShowWarningMessage($"Alias and {(IsQueueData ? "Queue" : "Message")} are required fields.", "WARNING");
                 return;
             }
 
