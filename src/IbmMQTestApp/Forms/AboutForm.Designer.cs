@@ -84,7 +84,9 @@
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MaximumSize = new Size(832, 609);
             MinimizeBox = false;
+            MinimumSize = new Size(832, 609);
             Name = "AboutForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "About";

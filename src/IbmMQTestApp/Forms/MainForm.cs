@@ -35,9 +35,9 @@ namespace IbmMQTestApp.Forms
                     CurrentSettings = new QueueConfigurationSettings();
                 }
             }
-            else 
-            { 
-                CurrentSettings = new QueueConfigurationSettings(); 
+            else
+            {
+                CurrentSettings = new QueueConfigurationSettings();
             }
             CurrentSettings.Id = Guid.NewGuid().ToString();
 
@@ -211,13 +211,7 @@ namespace IbmMQTestApp.Forms
                 {
                     string defaultFile = Environment.CurrentDirectory + "\\Settings.dll";
                     string filePath = saveFileDialog.FileName;
-                    AppSettings.ConfigFile = filePath;
-                    string fileContent = CriptoUtil.EncryptString(JsonConvert.SerializeObject(AppSettings));
-                    string defaultFileContent = CriptoUtil.EncryptString(filePath);
-
-                    // Save the file content here
-                    File.WriteAllText(filePath, fileContent);
-                    File.WriteAllText(defaultFile, defaultFileContent);
+                    SaveConfigurationFile(filePath);
                 }
             }
         }
@@ -244,7 +238,7 @@ namespace IbmMQTestApp.Forms
             aboutForm.ShowDialog();
         }
 
-        private void GetLastConfiguration() 
+        private void GetLastConfiguration()
         {
             string defaultFile = Environment.CurrentDirectory + "\\Settings.dll";
             if (FileUtil.FileExists(defaultFile))
@@ -274,6 +268,33 @@ namespace IbmMQTestApp.Forms
             {
                 CommonFormActions.ShowWarningMessage("Not a valid configuration file.", "ERROR");
             }
+        }
+
+        private void SaveConfigurationFile(string filePath)
+        {
+            string fileContent = CriptoUtil.EncryptString(JsonConvert.SerializeObject(AppSettings));
+            AppSettings.ConfigFile = filePath;
+            FileUtil.WriteFile(filePath, fileContent);
+            string defaultFileContent = CriptoUtil.EncryptString(filePath);
+            FileUtil.WriteFile(Environment.CurrentDirectory + "\\Settings.dll", defaultFileContent);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if ((AppSettings != null && string.IsNullOrEmpty(AppSettings.ConfigFile) == false) && CommonFormActions.ShowAskInformationMessage("Do you want to save the current configuration before quit?", "SAVE CONFIGURATION"))
+            {
+                SaveConfigurationFile(AppSettings.ConfigFile);
+            }
+        }
+
+        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if(AppSettings == null)
+            {
+                CommonFormActions.ShowWarningMessage("No file or configuration to save.", "WARNING");
+                return;
+            }
+            SaveConfigurationFile(AppSettings.ConfigFile); 
         }
     }
 }

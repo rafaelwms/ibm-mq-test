@@ -48,6 +48,7 @@
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
+            saveToolStripMenuItem1 = new ToolStripMenuItem();
             saveToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
@@ -236,36 +237,43 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.System;
-            menuStrip1.Size = new Size(1255, 49);
+            menuStrip1.Size = new Size(1255, 52);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1, saveToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1, saveToolStripMenuItem1, saveToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(87, 45);
+            fileToolStripMenuItem.Size = new Size(87, 48);
             fileToolStripMenuItem.Text = "File";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(439, 54);
-            toolStripMenuItem1.Text = "Load Configuration";
+            toolStripMenuItem1.Size = new Size(448, 54);
+            toolStripMenuItem1.Text = "Load";
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            // 
+            // saveToolStripMenuItem1
+            // 
+            saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
+            saveToolStripMenuItem1.Size = new Size(448, 54);
+            saveToolStripMenuItem1.Text = "Save";
+            saveToolStripMenuItem1.Click += saveToolStripMenuItem1_Click;
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(439, 54);
-            saveToolStripMenuItem.Text = "Save Configuration";
+            saveToolStripMenuItem.Size = new Size(448, 54);
+            saveToolStripMenuItem.Text = "Save As...";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(104, 45);
+            helpToolStripMenuItem.Size = new Size(104, 48);
             helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
@@ -371,9 +379,12 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
+            MaximumSize = new Size(1287, 1267);
+            MinimumSize = new Size(1287, 1267);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "IBM MQ® - Connection Tester";
+            FormClosing += MainForm_FormClosing;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -415,5 +426,6 @@
         private Label lblUser;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem1;
     }
 }
