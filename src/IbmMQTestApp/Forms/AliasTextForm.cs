@@ -1,7 +1,7 @@
-﻿using TesteIbmMQ.Domain.Settings;
-using TesteIbmMQ.WinFormApp.Common;
+﻿using IbmMQTestApp.Settings;
+using IbmMQTestApp.Common;
 
-namespace TesteIbmMQ.WinFormApp.Forms
+namespace IbmMQTestApp.Forms
 {
     public partial class AliasTextForm : Form
     {

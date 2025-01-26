@@ -1,10 +1,8 @@
-using TesteIbmMQ.Domain.Services;
-using TesteIbmMQ.Domain.Settings;
-using TesteIbmMQ.Domain.Utils;
-using TesteIbmMQ.Infraestructure.Services;
-using TesteIbmMQ.WinFormApp.Common;
+using IbmMQTestApp.Utils;
+using IbmMQTestApp.Common;
+using IbmMQTestApp.Settings;
 
-namespace TesteIbmMQ.WinFormApp.Forms
+namespace IbmMQTestApp.Forms
 {
     public partial class ConnectionForm : Form
     {

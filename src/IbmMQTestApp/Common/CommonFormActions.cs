@@ -1,7 +1,7 @@
-﻿using TesteIbmMQ.Domain.Settings;
-using TesteIbmMQ.Infraestructure.Services;
+﻿using IbmMQTestApp.Settings;
+using IbmMQTestApp.Services;
 
-namespace TesteIbmMQ.WinFormApp.Common
+namespace IbmMQTestApp.Common
 {
     public static class CommonFormActions
     {

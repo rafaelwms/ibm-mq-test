@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.Worker", "src\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.Infraestructure", "src\TesteIbmMQ.Infraestructure\TesteIbmMQ.Infraestructure.csproj", "{F1C3F0B3-FCF4-41C4-ADB7-BFF81057532C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteIbmMQ.WinFormApp", "src\TesteIbmMQ.WinFormApp\TesteIbmMQ.WinFormApp.csproj", "{B63B9A0B-7937-4AC3-8C51-E904B6AA7504}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbmMQTestApp", "src\IbmMQTestApp\IbmMQTestApp.csproj", "{B63B9A0B-7937-4AC3-8C51-E904B6AA7504}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

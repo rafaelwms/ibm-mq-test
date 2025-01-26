@@ -1,4 +1,4 @@
-﻿namespace TesteIbmMQ.WinFormApp.Forms
+﻿namespace IbmMQTestApp.Forms
 {
     partial class AboutForm
     {

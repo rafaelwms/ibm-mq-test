@@ -6,14 +6,20 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>ibm_mq.ico</ApplicationIcon>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <PackageReference Include="IBMMQDotnetClient" Version="9.4.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="ibm_mq.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TesteIbmMQ.Application\TesteIbmMQ.Application.csproj" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>

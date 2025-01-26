@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
-using TesteIbmMQ.Domain.Settings;
-using TesteIbmMQ.Domain.Utils;
-using TesteIbmMQ.Infraestructure.Services;
-using TesteIbmMQ.WinFormApp.Common;
+using IbmMQTestApp.Settings;
+using IbmMQTestApp.Utils;
+using IbmMQTestApp.Services;
+using IbmMQTestApp.Common;
 
-namespace TesteIbmMQ.WinFormApp.Forms
+namespace IbmMQTestApp.Forms
 {
     public partial class MainForm : Form
     {

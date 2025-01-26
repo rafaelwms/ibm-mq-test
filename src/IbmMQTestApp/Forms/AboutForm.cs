@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TesteIbmMQ.WinFormApp.Forms
+namespace IbmMQTestApp.Forms
 {
     public partial class AboutForm : Form
     {

@@ -1,11 +1,6 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using TesteIbmMQ.CrossCutting.Extensions;
-using TesteIbmMQ.Domain.Services;
-using TesteIbmMQ.Infraestructure.Services;
-using TesteIbmMQ.WinFormApp.Forms;
+using IbmMQTestApp.Forms;
 
-namespace TesteIbmMQ.WinFormApp
+namespace IbmMQTestApp
 {
     internal static class Program
     {
