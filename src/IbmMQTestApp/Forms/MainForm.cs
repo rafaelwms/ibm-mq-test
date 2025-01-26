@@ -75,10 +75,7 @@ namespace IbmMQTestApp.Forms
             }
             AppSettings.SaveSetings(settings);
             CurrentSettings = settings;
-            LoadComboBox();
-            LoadQueues();
-            LoadMessages();
-            LoadLabels();
+            LoadForm();
         }
 
         private void LoadLabels()
@@ -247,6 +244,7 @@ namespace IbmMQTestApp.Forms
 
                 LoadConfigurationFile(fileContent);
             }
+            LoadForm();
         }
 
         private void LoadConfigurationFile(string filePath)
@@ -260,10 +258,7 @@ namespace IbmMQTestApp.Forms
                     CurrentSettings = AppSettings.SavedSettings.FirstOrDefault();
                     string defaultFileContent = CriptoUtil.EncryptString(filePath);
                     FileUtil.WriteFile(Environment.CurrentDirectory + "\\Settings.dll", defaultFileContent);
-                    LoadComboBox();
-                    LoadQueues();
-                    LoadMessages();
-                    LoadLabels();
+                    LoadForm();
                 }
             }
             catch (Exception ex)
@@ -289,14 +284,35 @@ namespace IbmMQTestApp.Forms
             }
         }
 
+        private void LoadForm()
+        {
+            LoadComboBox();
+            LoadQueues();
+            LoadMessages();
+            LoadLabels();
+            CheckFileLoaded();
+        }
+
+        private void CheckFileLoaded()
+        {
+            if (AppSettings == null || string.IsNullOrEmpty(AppSettings.ConfigFile))
+            {
+                menuItemSave.Enabled = false;
+            }
+            else
+            {
+                menuItemSave.Enabled = true;
+            }
+        }
+
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if(AppSettings == null)
+            if (AppSettings == null || string.IsNullOrEmpty(AppSettings.ConfigFile))
             {
                 CommonFormActions.ShowWarningMessage("No file or configuration to save.", "WARNING");
                 return;
             }
-            SaveConfigurationFile(AppSettings.ConfigFile); 
+            SaveConfigurationFile(AppSettings.ConfigFile);
         }
     }
 }

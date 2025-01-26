@@ -48,7 +48,7 @@
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
-            saveToolStripMenuItem1 = new ToolStripMenuItem();
+            menuItemSave = new ToolStripMenuItem();
             saveToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
@@ -243,7 +243,7 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1, saveToolStripMenuItem1, saveToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1, menuItemSave, saveToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(87, 48);
             fileToolStripMenuItem.Text = "File";
@@ -255,12 +255,13 @@
             toolStripMenuItem1.Text = "Load";
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
-            // saveToolStripMenuItem1
+            // menuItemSave
             // 
-            saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            saveToolStripMenuItem1.Size = new Size(448, 54);
-            saveToolStripMenuItem1.Text = "Save";
-            saveToolStripMenuItem1.Click += saveToolStripMenuItem1_Click;
+            menuItemSave.Enabled = false;
+            menuItemSave.Name = "menuItemSave";
+            menuItemSave.Size = new Size(448, 54);
+            menuItemSave.Text = "Save";
+            menuItemSave.Click += saveToolStripMenuItem1_Click;
             // 
             // saveToolStripMenuItem
             // 
@@ -426,6 +427,6 @@
         private Label lblUser;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
-        private ToolStripMenuItem saveToolStripMenuItem1;
+        private ToolStripMenuItem menuItemSave;
     }
 }
