@@ -6,6 +6,5 @@
 
         Task SendMessageToQueue(string queue, string message);
 
-        Task SendMessageToQueue(string queue, string message, int retryCount, DateTime readTime);
     }
 }

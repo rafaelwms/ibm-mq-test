@@ -1,50 +1,50 @@
-﻿using System.Collections;
-using IBM.WMQ;
-using Microsoft.Extensions.Logging;
+﻿using IBM.WMQ;
+using System.Collections;
 using TesteIbmMQ.Domain.Entities;
 using TesteIbmMQ.Domain.Services;
 using TesteIbmMQ.Domain.Settings;
 
 namespace TesteIbmMQ.Infraestructure.Services
 {
-    public class QueueService(QueueSettings settings, ILogger<QueueService> logger) : IQueueService
+    public class QueueTransientService : IQueueService
     {
+        public QueueTransientService(QueueSettings settings)
+        {
+            Settings = settings;
+        }
+        public QueueSettings Settings { get; set; }
         private MQQueueManager mqQMgr;
         private MQQueue mqQueue;
 
-        private void InitQueue(string queue)
+        public void InitQueue(string queue)
         {
             if (mqQMgr != null)
             {
                 if (mqQueue == null)
                 {
-                    logger.LogInformation($"mqQueue está nulo, vamos obter para a fila {queue}");
-                    mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_INPUT_SHARED | MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_BROWSE);
+                    mqQueue = mqQMgr.AccessQueue(Settings.Queues[queue], MQC.MQOO_INPUT_SHARED | MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_BROWSE);
                 }
                 return;
             }
             Hashtable props = new()
                 {
-                    { MQC.HOST_NAME_PROPERTY, settings.Host },
-                    { MQC.CHANNEL_PROPERTY, settings.Channel },
-                    { MQC.PORT_PROPERTY, settings.Port },
+                    { MQC.HOST_NAME_PROPERTY, Settings.Host },
+                    { MQC.CHANNEL_PROPERTY, Settings.Channel },
+                    { MQC.PORT_PROPERTY, Settings.Port },
                     { MQC.TRANSPORT_PROPERTY, MQC.TRANSPORT_MQSERIES_MANAGED },
-                    { MQC.USER_ID_PROPERTY, settings.Username },
-                { MQC.PASSWORD_PROPERTY, settings.Password }
+                    { MQC.USER_ID_PROPERTY, Settings.Username },
+                { MQC.PASSWORD_PROPERTY, Settings.Password }
                 };
             try
             {
-                logger.LogInformation("Connecting to " + settings.QueueManagerName);
-                mqQMgr = new MQQueueManager(settings.QueueManagerName, props);
-                mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_INPUT_SHARED | MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_BROWSE | MQC.MQOO_INQUIRE);
+                mqQMgr = new MQQueueManager(Settings.QueueManagerName, props);
+                mqQueue = mqQMgr.AccessQueue(Settings.Queues[queue], MQC.MQOO_INPUT_SHARED | MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_BROWSE | MQC.MQOO_INQUIRE);
             }
             catch (Exception e)
             {
 
-                logger.LogError(e, "Connecting to " + settings.QueueManagerName);
                 throw;
             }
-            logger.LogInformation("Connecting to " + settings.QueueManagerName);
         }
 
         public async Task StartQueueProcessor(Func<string, string, CancellationToken, Task> callBack, string queue, CancellationToken stoppingToken)
@@ -58,7 +58,6 @@ namespace TesteIbmMQ.Infraestructure.Services
 
                     if (IsQueueEmpty())
                     {
-                        logger.LogInformation($"Queue {queue} is empty.");
                         await Task.Delay(10000, stoppingToken); // Wait for some time before checking again
                         continue;
                     }
@@ -78,7 +77,6 @@ namespace TesteIbmMQ.Infraestructure.Services
 
                     if (!message.IsAllowedToRetry())
                     {
-                        logger.LogInformation($"Message will be Readed at {message.GetTimeToRead()}");
                         continue;
                     }
 
@@ -92,14 +90,12 @@ namespace TesteIbmMQ.Infraestructure.Services
                     if (mqe?.Reason != MQC.MQRC_NO_MSG_AVAILABLE)
                     {
                         _continue = false;
-                        logger.LogError(mqe, $"01-Erro ao tentar consumir item de fila! - Código de Erro IBMMQ: {mqe?.Reason}");
                     }
                 }
                 catch (Exception ex)
                 {
 
                     _continue = false;
-                    logger.LogError(ex, $"01-Erro ao tentar consumir item de fila! - Erro Genérico: {ex?.Message}");
 
                 }
             }
@@ -147,23 +143,21 @@ namespace TesteIbmMQ.Infraestructure.Services
             {
                 if (mqQueue == null)
                 {
-                    logger.LogInformation($"mqQueue está nulo, vamos obter para a fila {queue}");
-                    mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
+                    mqQueue = mqQMgr.AccessQueue(Settings.Queues[queue], MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
                 }
                 return;
             }
             Hashtable props = new()
     {
-        { MQC.HOST_NAME_PROPERTY, settings.Host },
-        { MQC.CHANNEL_PROPERTY, settings.Channel },
-        { MQC.PORT_PROPERTY, settings.Port },
+        { MQC.HOST_NAME_PROPERTY, Settings.Host },
+        { MQC.CHANNEL_PROPERTY, Settings.Channel },
+        { MQC.PORT_PROPERTY, Settings.Port },
         { MQC.TRANSPORT_PROPERTY, MQC.TRANSPORT_MQSERIES_MANAGED },
-        { MQC.USER_ID_PROPERTY, settings.Username },
-        { MQC.PASSWORD_PROPERTY, settings.Password }
+        { MQC.USER_ID_PROPERTY, Settings.Username },
+        { MQC.PASSWORD_PROPERTY, Settings.Password }
     };
-            logger.LogInformation("Connecting to " + settings.QueueManagerName);
-            mqQMgr = new MQQueueManager(settings.QueueManagerName, props);
-            mqQueue = mqQMgr.AccessQueue(settings.Queues[queue], MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
+            mqQMgr = new MQQueueManager(Settings.QueueManagerName, props);
+            mqQueue = mqQMgr.AccessQueue(Settings.Queues[queue], MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING);
         }
     }
 }

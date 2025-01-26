@@ -9,5 +9,25 @@
         public string Password { get; set; }
         public string QueueManagerName { get; set; }
         public Dictionary<string, string> Queues { get; set; }
+
+        public void SaveQueue(string alias, string queueName)
+        {
+            if (Queues.ContainsKey(alias))
+            {
+                Queues[alias] = queueName;
+            }
+            else
+            {
+                Queues.Add(alias, queueName);
+            }
+        }
+
+        public void RemoveQueue(string alias) 
+        {
+            if (Queues.ContainsKey(alias))
+            {
+                Queues.Remove(alias);
+            }
+        }
     }
 }
