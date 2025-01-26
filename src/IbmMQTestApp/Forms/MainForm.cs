@@ -258,6 +258,8 @@ namespace IbmMQTestApp.Forms
                     string decriptedContent = FileUtil.ReadEncriptedFile(filePath);
                     AppSettings = JsonConvert.DeserializeObject<WinAppSettings>(decriptedContent);
                     CurrentSettings = AppSettings.SavedSettings.FirstOrDefault();
+                    string defaultFileContent = CriptoUtil.EncryptString(filePath);
+                    FileUtil.WriteFile(Environment.CurrentDirectory + "\\Settings.dll", defaultFileContent);
                     LoadComboBox();
                     LoadQueues();
                     LoadMessages();
