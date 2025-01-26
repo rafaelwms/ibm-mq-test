@@ -20,7 +20,7 @@ namespace TesteIbmMQ.WinFormApp
            
             ApplicationConfiguration.Initialize();
 
-            System.Windows.Forms.Application.Run(new ConnectionForm());
+            System.Windows.Forms.Application.Run(new MainForm());
         }
     }
     

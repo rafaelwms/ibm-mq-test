@@ -26,5 +26,13 @@
                 SavedMessages.Remove(alias);
             }
         }
+
+        public QueueConfigurationSettings() 
+        {
+            Id = Guid.NewGuid().ToString();
+            SavedMessages = new Dictionary<string, string>();
+            QueueSettings = new QueueSettings();
+            SettingsName = string.Empty;
+        }
     }
 }

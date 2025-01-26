@@ -7,32 +7,44 @@ namespace TesteIbmMQ.WinFormApp.Forms
 {
     public partial class ConnectionForm : Form
     {
+        public MainForm MainForm { get; set; }
         public QueueConfigurationSettings Settings { get; set; }
         public ConnectionForm()
         {
             InitializeComponent();
         }
 
+        public ConnectionForm(MainForm mainForm, QueueConfigurationSettings settings)
+        {
+            InitializeComponent();
+            MainForm = mainForm;
+            Settings = settings;
+
+        }
+
 
         private void btnConnectionTest_Click(object sender, EventArgs e)
         {
-            if (Settings == null) 
+            if (Settings == null)
             {
                 Settings = ContentFileUtil.INITIAL_SETTINGS;
                 FillForm(Settings);
                 return;
             }
             Settings = FormToSettings();
+
             var queueService = new QueueTransientService(Settings.QueueSettings);
 
             try
             {
-                foreach (var queue in Settings.QueueSettings.Queues) 
-                { 
-                    queueService.InitQueue(queue.Key);
-                }
+                if (Settings.QueueSettings.Queues.Any())
+                {
+                    foreach (var queue in Settings.QueueSettings.Queues)
+                    {
+                        queueService.InitQueue(queue.Key);
+                    }
                     MessageBox.Show($"Connection successful");
-               
+                }
             }
             catch (System.Exception ex)
             {
@@ -94,13 +106,13 @@ namespace TesteIbmMQ.WinFormApp.Forms
 
         private void btnQueueRemove_Click(object sender, EventArgs e)
         {
-            if(lvQueues.SelectedItems.Count == 0)
+            if (lvQueues.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Select a queue to remove");
                 return;
             }
             var alias = lvQueues.SelectedItems[0].Text.ToString();
-            if(alias != null)
+            if (alias != null)
             {
                 Settings.QueueSettings.RemoveQueue(alias);
                 LoadQueueData();
@@ -130,7 +142,7 @@ namespace TesteIbmMQ.WinFormApp.Forms
             this.tbConnPort.Text = settings.QueueSettings.Port.ToString();
             this.tbConnQueueManager.Text = settings.QueueSettings.QueueManagerName;
             this.tbConnUser.Text = settings.QueueSettings.Username;
-            this.tbConnPassword.Text = settings.QueueSettings.Password; 
+            this.tbConnPassword.Text = settings.QueueSettings.Password;
             this.LoadQueueData();
             this.LoadMessageData();
         }
@@ -142,7 +154,7 @@ namespace TesteIbmMQ.WinFormApp.Forms
             settings.SettingsName = tbConnName.Text;
             settings.QueueSettings.Channel = tbConnChannel.Text;
             settings.QueueSettings.Host = tbConnHost.Text;
-            settings.QueueSettings.Port = int.Parse(tbConnPort.Text);
+            settings.QueueSettings.Port = tbConnPort.Text;
             settings.QueueSettings.QueueManagerName = tbConnQueueManager.Text;
             settings.QueueSettings.Username = tbConnUser.Text;
             settings.QueueSettings.Password = tbConnPassword.Text;
@@ -159,6 +171,26 @@ namespace TesteIbmMQ.WinFormApp.Forms
                 dict.Add(item.Text, item.SubItems[1].Text);
             }
             return dict;
+        }
+
+        private void btnConnectionSave_Click(object sender, EventArgs e)
+        {
+            MainForm.Show();
+            Settings = FormToSettings();
+            MainForm.SaveSettings(Settings);
+            this.Close();
+        }
+
+        private void gbConnections_Enter(object sender, EventArgs e)
+        {
+
+        }
+        private void ConnectionForm_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Settings = ContentFileUtil.INITIAL_SETTINGS;
+            FillForm(Settings);
+            return;
+
         }
     }
 }

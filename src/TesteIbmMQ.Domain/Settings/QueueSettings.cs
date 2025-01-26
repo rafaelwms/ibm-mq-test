@@ -4,7 +4,7 @@
     {
         public string Host { get; set; }
         public string Channel { get; set; }
-        public int Port { get; set; }
+        public string Port { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string QueueManagerName { get; set; }
@@ -28,6 +28,17 @@
             {
                 Queues.Remove(alias);
             }
+        }
+
+        public QueueSettings()
+        {
+            Queues = new Dictionary<string, string>();
+            Channel =
+            Host = 
+            Password =
+            QueueManagerName =
+            Port = 
+            Username = string.Empty;
         }
     }
 }

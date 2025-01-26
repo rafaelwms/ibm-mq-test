@@ -12,7 +12,7 @@ namespace TesteIbmMQ.Domain.Utils
             {
                 Host = "localhost",
                 Channel = "DEV.APP.SVRCONN",
-                Port = 1414,
+                Port = "1414",
                 Username = "admin",
                 Password = string.Empty,
                 QueueManagerName = "QM1",
