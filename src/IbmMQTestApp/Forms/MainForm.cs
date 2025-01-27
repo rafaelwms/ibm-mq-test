@@ -58,11 +58,19 @@ namespace IbmMQTestApp.Forms
 
         public void LoadQueues()
         {
+            if (CurrentSettings == null)
+            {
+                return;
+            }
             lvQueues.LoadListViewFromDictionary(CurrentSettings.QueueSettings.Queues);
         }
 
         public void LoadMessages()
         {
+            if (CurrentSettings == null)
+            {
+                return;
+            }
             lvMessages.LoadListViewFromDictionary(CurrentSettings.SavedMessages);
         }
 
