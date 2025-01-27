@@ -155,9 +155,9 @@ namespace IbmMQTestApp.Forms
 
         private void btnConnectionSave_Click(object sender, EventArgs e)
         {
-            MainForm.Show();
             Settings = FormToSettings();
             MainForm.SaveSettings(Settings);
+            MainForm.Show();
             this.Close();
         }
 

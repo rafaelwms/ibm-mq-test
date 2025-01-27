@@ -28,21 +28,31 @@ namespace IbmMQTestApp.Forms
                 AppSettings.SavedSettings = new List<QueueConfigurationSettings>();
             }
 
+            
+
             if (CurrentSettings != null && string.IsNullOrEmpty(CurrentSettings.SettingsName) == false)
             {
+                var newSettings =  CurrentSettings.CopySettings();
+                
                 if (CommonFormActions.ShowAskInformationMessage("Do you want to copy current settings?", "NEW CONNECTION") == false)
                 {
-                    CurrentSettings = new QueueConfigurationSettings();
+                    newSettings = new QueueConfigurationSettings();
+                    
                 }
+                
+                ConnectionForm connectionForm = new ConnectionForm(this, newSettings);
+                connectionForm.ShowDialog();
+
             }
             else
             {
-                CurrentSettings = new QueueConfigurationSettings();
+                var newSettings = new QueueConfigurationSettings();
+                ConnectionForm connectionForm = new ConnectionForm(this, newSettings);
+                connectionForm.ShowDialog();
             }
-            CurrentSettings.Id = Guid.NewGuid().ToString();
+            
 
-            ConnectionForm connectionForm = new ConnectionForm(this, CurrentSettings);
-            connectionForm.ShowDialog();
+            
         }
 
         public void LoadComboBox()
